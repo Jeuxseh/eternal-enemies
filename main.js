@@ -9,7 +9,7 @@ const main = ()=>{
 
         const splashScreen=buildDom(`
         <section class="splash-screen">
-            <h1>Hola</h1>
+            <h1>Enternal Enemies</h1>
             <button>Start</button>
         </section>
         
