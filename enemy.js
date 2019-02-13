@@ -12,7 +12,7 @@ class Enemy{
         this.direction=-1;
         
     }
-
+    
 
     update(){
         this.x= this.x + this.direction*this.speed;
@@ -23,5 +23,5 @@ class Enemy{
         this.ctx.fillRect(this.x,this.y-this.size/2,this.size,this.size);
     };
 
-    
+
 }

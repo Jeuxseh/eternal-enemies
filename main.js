@@ -38,6 +38,8 @@ const main = ()=>{
         
 
         const game = new Game(canvasElement);
+
+        game.gameOverCallback(buildGameOver);
         game.startLoop();
 
         const setPlayerDirection = (event)=>{

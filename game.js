@@ -6,6 +6,7 @@ class Game{
         this.ctx=this.canvas.getContext('2d');
         this.player;
         this.enemies=[];
+        this.isGameOver=false;
     };
     startLoop(){
         
@@ -13,6 +14,7 @@ class Game{
         this.player = new Player(this.canvas,3);
         
         const loop= () =>{
+            console.log("hola");
             if(Math.random()>0.97){
                 const y = Math.random()*this.canvas.height;
                 this.enemies.push( new Enemy (this.canvas,y))
@@ -23,7 +25,11 @@ class Game{
             this.clearCanvas();
             this.drawCanvas();
 
-            window.requestAnimationFrame(loop);
+
+            if(!this.isGameOver){
+                window.requestAnimationFrame(loop);
+            }
+           
         }
 
         window.requestAnimationFrame(loop);
@@ -48,8 +54,24 @@ class Game{
     };
     checkAllCollisions(){
         this.player.checkScreen();
+        this.enemies.forEach((enemy,index)=>{
+            if(this.player.checkCollisionEnemy(enemy)){
+                this.player.loseLive();
+                this.enemies.splice(index,1);
+                if(this.player.lives===0){
+                    this.isGameOver=true;
+                    this.onGameOver();
+
+
+                }
+            };
+        });
 
         //más colisiones
+    }
+
+    gameOverCallback(callback){
+        this.onGameOver = callback;
     }
 
 
