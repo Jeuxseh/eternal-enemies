@@ -28,14 +28,28 @@ const main = ()=>{
         const height= document.querySelector('.game-screen').offsetHeight;
 
         const canvasElement= document.querySelector('canvas');
+
         canvasElement.setAttribute('width',width);
         canvasElement.setAttribute('height',height);
 
-        setTimeout(buildGameOver,3000);
+      
+
+
+        
 
         const game = new Game(canvasElement);
         game.startLoop();
 
+        const setPlayerDirection = (event)=>{
+            if(event.code ==='ArrowUp'){
+                game.player.setDirection(-1);
+            } else if (event.code==='ArrowDown'){
+                game.player.setDirection(1);
+            } 
+
+            
+        }
+        document.addEventListener('keydown',setPlayerDirection);
     };
     const buildGameOver=()=>{
         const gameOverScreen=buildDom(`
